@@ -5,9 +5,21 @@
 
 -- ibf_region
 create table ibf_region(
-	region_id int primary key,
+	region_id int primary key auto_increment,
 	region_name varchar(50) not null
 );
+insert into ibf_region(region_name) values
+('Jabodetabek'),
+('Jawa Barat'),
+('Banten'),
+('DIY Jateng'),
+('Jawa Timur'),
+('Papua'),
+('Kalimantan'),
+('Sulawesi'),
+('Sumatra'),
+('Hongkong'),
+('Korea');
 
 -- ibf_member_type
 create table ibf_member_type(
@@ -15,6 +27,40 @@ create table ibf_member_type(
 	member_type tinyint(1) not null,
 	type_description text
 );
+
+insert into ibf_member_type (member_type, type_description) values
+('Kontributor Tulisan Artikel',''),
+('Kontributor Desain Grafis dan Media',''),
+('Narasumber Webminar',''),
+('Web Developer',''),
+('Mobile Developer',''),
+('System Admin',''),
+('Web Admin dan Sosial Media Admin',''),
+('Video Editor',''),
+('Animator',''),
+('Fotografer',''),
+('Pelaksana Kegiatan',''),
+('Pengajar Pelatihan dan Mentor',''),
+('Narasumber Berbagi Ilmu Tematik',''),
+('Donatur Beasiswa Ilmuberbagi @200rb/bulan',''),
+('Donatur IB Academy Heroes @500rb/bulan','');
+-- ibf apps
+
+create table ibf_app(
+	app_id int primary key,
+	`app_name` varchar(20) not null,
+	app_url varchar(50),
+	date_create datetime
+);
+
+insert into ibf_app (app_id, `app_name`, app_url, date_create) values 
+(1, 'member','http://member.ilmuberbagi.or.id', current_timestamp),
+(2, 'blog','http://blog.ilmuberbagi.or.id', current_timestamp),
+(3, 'jurnal','http://jurnal.ilmuberbagi.or.id', current_timestamp),
+(4, 'quote','http://quote.ilmuberbagi.or.id', current_timestamp),
+(5, 'market','http://market.ilmuberbagi.or.id', current_timestamp),
+(6, 'chanel','http://channel.ilmuberbagi.or.id', current_timestamp),
+(7, 'mitra','http://mitra.ilmuberbagi.or.id', current_timestamp);
 
 
 -- ibf_members
@@ -42,8 +88,38 @@ create table ibf_member_detail(
 	member_gplus varchar(50),
 	member_blog varchar(50),
 	member_image_profile varchar(200),
+	member_motivation text,
 	member_description text,
 	foreign key (member_id) references ibf_member(member_id) ON DELETE CASCADE,
 	foreign key (member_type) references ibf_member_type(type_id),
 	foreign key (member_region) references ibf_region(region_id)
+);
+
+-- ibf privilages
+-- app number mengacu pada ibf_app, privilage values = 1 .. 9
+-- ketentuan value privilage menyesuaikan dengan masing-masing app
+
+create table ibf_privilage(
+	member_id int,
+	app_1 tinyint(1) default 1,
+	app_2 tinyint(1) default 1,
+	app_3 tinyint(1) default 1,
+	app_4 tinyint(1) default 1,
+	app_5 tinyint(1) default 1,
+	app_6 tinyint(1) default 1,
+	app_7 tinyint(1) default 1,
+	app_8 tinyint(1) default 1,
+	app_9 tinyint(1) default 1,
+	app_10 tinyint(1) default 1,
+	app_11 tinyint(1) default 1,
+	app_12 tinyint(1) default 1,
+	app_13 tinyint(1) default 1,
+	app_14 tinyint(1) default 1,
+	app_15 tinyint(1) default 1,
+	app_16 tinyint(1) default 1,
+	app_17 tinyint(1) default 1,
+	app_18 tinyint(1) default 1,
+	app_19 tinyint(1) default 1,
+	app_20 tinyint(1) default 1,
+	foreign key (member_id) references ibf_member(member_id) ON DELETE CASCADE
 );
