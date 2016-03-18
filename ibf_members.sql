@@ -24,7 +24,7 @@ insert into ibf_region(region_name) values
 -- ibf_member_type
 create table ibf_member_type(
 	type_id int primary key auto_increment,
-	member_type tinyint(1) not null,
+	member_type varchar(100) not null,
 	type_description text
 );
 
@@ -90,6 +90,9 @@ create table ibf_member_detail(
 	member_image_profile varchar(200),
 	member_motivation text,
 	member_description text,
+	member_reg_year int(4),
+	date_input datetime,
+	date_update datetime,
 	foreign key (member_id) references ibf_member(member_id) ON DELETE CASCADE,
 	foreign key (member_type) references ibf_member_type(type_id),
 	foreign key (member_region) references ibf_region(region_id)
