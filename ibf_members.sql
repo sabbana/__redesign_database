@@ -70,7 +70,8 @@ create table ibf_member(
 	member_email varchar(50) not null,
 	member_username varchar(20),
 	member_password varchar(32),
-	member_ibf_code varchar(10)
+	member_ibf_code varchar(10),
+	member_status boolean default 1
 );
 
 -- ibf_member detail
@@ -79,8 +80,11 @@ create table ibf_member_detail(
 	member_type int,
 	member_birth_date date,
 	member_birthplace varchar(50),
+	member_gender boolean default 1,
 	member_address varchar(200),
 	member_region int,
+	member_education varchar(200),
+	member_skills varchar(500),
 	member_job varchar(50),
 	member_phone varchar(50),
 	member_facebook varchar(50),
@@ -91,8 +95,8 @@ create table ibf_member_detail(
 	member_motivation text,
 	member_description text,
 	member_reg_year int(4),
-	date_input datetime,
-	date_update datetime,
+	member_date_input datetime,
+	member_date_update datetime,
 	foreign key (member_id) references ibf_member(member_id) ON DELETE CASCADE,
 	foreign key (member_type) references ibf_member_type(type_id),
 	foreign key (member_region) references ibf_region(region_id)
@@ -125,4 +129,39 @@ create table ibf_privilage(
 	app_19 tinyint(1) default 1,
 	app_20 tinyint(1) default 1,
 	foreign key (member_id) references ibf_member(member_id) ON DELETE CASCADE
+);
+
+-- article database
+create table ibf_article_category(
+	category_id int primary key auto_increment,
+	category_name varchar(50) not null
+);
+
+create table ibf_article(
+	article_id int primary key auto_increment,
+	article_category int,
+	article_title varchar(100) not null,
+	article_content text,
+	article_author int,
+	article_reviewer int,
+	article_image varchar(100),
+	article_tags varchar(200),
+	article_approve boolean default 0,
+	article_date_input datetime,
+	article_date_update datetime,
+	foreign key (article_author) references ibf_member(member_id),
+	foreign key (article_category) references ibf_article_category(category_id)
+);
+
+create table ibf_article_comment(
+	comment_id int primary key auto_increment,
+	comment_article_id int,
+	comment_author varchar(50) not null,
+	comment_author_email varchar(50),
+	comment_author_url varchar(100),
+	comment_author_ip varchar(50),
+	comment_content text,
+	comment_approved boolean default 0,
+	comment_date_input datetime,
+	foreign key (comment_article_id) references ibf_article(article_id)
 );
