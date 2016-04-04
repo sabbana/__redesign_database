@@ -77,7 +77,7 @@ create table ibf_member(
 -- ibf_member detail
 create table ibf_member_detail(
 	member_id int,
-	member_type int,
+	member_type varchar(100),
 	member_birth_date date,
 	member_birthplace varchar(50),
 	member_gender boolean default 1,
@@ -98,7 +98,6 @@ create table ibf_member_detail(
 	member_date_input datetime,
 	member_date_update datetime,
 	foreign key (member_id) references ibf_member(member_id) ON DELETE CASCADE,
-	foreign key (member_type) references ibf_member_type(type_id),
 	foreign key (member_region) references ibf_region(region_id)
 );
 
