@@ -164,3 +164,26 @@ create table ibf_article_comment(
 	comment_date_input datetime,
 	foreign key (comment_article_id) references ibf_article(article_id)
 );
+
+create table ibf_asset(
+	asset_id int primary key auto_increment,
+	asset_name varchar(50),
+	asset_url varchar(100),
+	asset_url_thumb varchar(100),
+	asset_description text,
+	asset_create_date datetime
+);
+
+create table ibf_activity(
+	activity_id int primary key auto_increment,
+	activity_name varchar(100) not null,
+	activity_location varchar(100) not null,
+	activity_pic varchar(100) not null,
+	activity_description text,
+	activity_date_start datetime,
+	activity_date_end datetime,
+	activity_image varchar(100),
+	activity_create_date datetime,
+	activity_update_date datetime
+);
+
