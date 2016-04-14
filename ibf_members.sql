@@ -178,12 +178,26 @@ create table ibf_activity(
 	activity_id int primary key auto_increment,
 	activity_name varchar(100) not null,
 	activity_location varchar(100) not null,
+	activity_lat float,
+	activity_long float,
+	activity_google_address varchar(100),
 	activity_pic varchar(100) not null,
 	activity_description text,
 	activity_date_start datetime,
 	activity_date_end datetime,
+	activity_participant boolean default 0,
 	activity_image varchar(100),
 	activity_create_date datetime,
 	activity_update_date datetime
 );
 
+create table ibf_activity_participant(
+	activity_id int,
+	name varchar(50) not null,
+	gender boolean default 1,
+	email varchar(50) not null,
+	phone varchar(20) not null,
+	job varchar(50),
+	date_register datetime,
+	foreign key (activity_id) references ibf_activity(activity_id) ON DELETE CASCADE
+);
