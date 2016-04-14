@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: 07 Apr 2016 pada 18.43
--- Versi Server: 5.5.39-log
--- PHP Version: 5.4.31
+-- Host: localhost:3306
+-- Generation Time: Apr 13, 2016 at 02:44 AM
+-- Server version: 10.0.20-MariaDB
+-- PHP Version: 7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `portal`
@@ -23,7 +23,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_app`
+-- Table structure for table `ibf_activity`
+--
+
+CREATE TABLE IF NOT EXISTS `ibf_activity` (
+  `activity_id` int(11) NOT NULL,
+  `activity_name` varchar(100) NOT NULL,
+  `activity_location` varchar(100) NOT NULL,
+  `activity_pic` varchar(100) NOT NULL,
+  `activity_description` text,
+  `activity_date_start` datetime DEFAULT NULL,
+  `activity_date_end` datetime DEFAULT NULL,
+  `activity_image` varchar(100) DEFAULT NULL,
+  `activity_create_date` datetime DEFAULT NULL,
+  `activity_update_date` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ibf_activity`
+--
+
+INSERT INTO `ibf_activity` (`activity_id`, `activity_name`, `activity_location`, `activity_pic`, `activity_description`, `activity_date_start`, `activity_date_end`, `activity_image`, `activity_create_date`, `activity_update_date`) VALUES
+(1, 'Pengajian KH Anwar Zahid', 'Rumah IB', 'Mas Sabbana', 'Acara diselenggarakan untuk umum dan untuk memperingati hari jadi Ilmu Berbagi Yogyakarta', '2016-04-13 06:46:26', '2016-04-14 06:46:26', '8e79279f4959b1602921e0cd0c9b54e5_t.jpg', '2016-04-13 06:49:22', '2016-04-13 06:49:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ibf_app`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_app` (
@@ -34,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `ibf_app` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_app`
+-- Dumping data for table `ibf_app`
 --
 
 INSERT INTO `ibf_app` (`app_id`, `app_name`, `app_url`, `date_create`) VALUES
@@ -49,11 +75,11 @@ INSERT INTO `ibf_app` (`app_id`, `app_name`, `app_url`, `date_create`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_article`
+-- Table structure for table `ibf_article`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_article` (
-`article_id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL,
   `article_category` int(11) DEFAULT NULL,
   `article_title` varchar(100) NOT NULL,
   `article_content` text,
@@ -64,30 +90,31 @@ CREATE TABLE IF NOT EXISTS `ibf_article` (
   `article_approve` tinyint(1) DEFAULT '0',
   `article_date_input` datetime DEFAULT NULL,
   `article_date_update` datetime DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_article`
+-- Dumping data for table `ibf_article`
 --
 
 INSERT INTO `ibf_article` (`article_id`, `article_category`, `article_title`, `article_content`, `article_author`, `article_reviewer`, `article_image`, `article_tags`, `article_approve`, `article_date_input`, `article_date_update`) VALUES
 (1, 1, 'Developing Ilmu Berbagi Foundation Portal', 'Pengembangan aplikasi portal ilmu berbagi dilatarbelakangi perkembangan aplikasi dan layanan yang semakin bertambah, serta meningkatnya antusias masyarakat luas terhadap ilmu berbagi foundation. <br>Banyak kalangan pemuda yang menginginkan bergabung dengan gerakan bernagi berkelanjutan.<br><br><img src="http://ilmuberbagi.or.id/wp-content/uploads/2014/03/copy-LOGO11.png" alt=""><br><br>dengan adanya portal ilmu berbagi foundation, kami berharap masyarakat luas dapat lebih dengan mudah mengenal dan memanfaatkan layanan-layanan yang kami kembangkan. baik layanan untuk saling berbagi maupun layanan-layanan lain yang nantinya dapat membantu para donatur untuk berdonasi.<br>', 122, NULL, NULL, '["portal","develop"]', 1, '2016-04-02 11:14:08', '2016-04-07 16:43:51'),
-(2, 1, 'Pengenalan HTML', '<p>HTML (Hyper Text Markup Language) adalah sebuah bahasa markup yang digunakan untuk membuat sebuah halaman web dan menampilkan berbagai informasi di dalam sebuah browser Internet. Bermula dari sebuah bahasa yang sebelumnya banyak digunakan di dunia penerbitan dan percetakan yang disebut dengan SGML (Standard Generalized Markup Language), HTML adalah sebuah standar yang digunakan secara luas untuk menampilkan halaman web. HTML saat ini merupakan standar Internet yang didefinisikan dan dikendalikan penggunaannya oleh World Wide Web Consortium (W3C).</p><p>HTML berupa kode-kode tag yang menginstruksikan browser untuk menghasilkan tampilan sesuai dengan yang diinginkan. Sebuah file yang merupakan file HTML dapat dibuka dengan menggunakan browser web seperti Mozilla Firefox atau Microsoft Internet Explorer. HTML juga dapat dikenali oleh aplikasi pembuka email ataupun dari PDA dan program lain yang memiliki kemampuan browser.</p><p>HTML dokumen tersebut mirip dengan dokumen teks biasa, hanya dalam dokumen ini sebuah teks bisa memuat instruksi yang ditandai dengan kode atau lebih dikenal dengan TAG tertentu. Sebagai contoh jika ingin membuat teks ditampilkan menjadi tebal seperti: TAMPIL TEBAL, maka penulisannya dilakukan dengan cara: <b>TAMPIL TEBAL</b>. Tanda <b> digunakan untuk mengaktifkan instruksi cetak tebal, diikuti oleh teks yang ingin ditebalkan, dan diakhiri dengan tanda </b> untuk menonaktifkan cetak tebal tersebut.<br><br></p>', 200, NULL, NULL, '["teknologi","html","web"]', 1, '2016-04-07 16:46:34', '2016-04-07 17:02:29');
+(2, 1, 'Pengenalan HTML', '<p>HTML (Hyper Text Markup Language) adalah sebuah bahasa markup yang digunakan untuk membuat sebuah halaman web dan menampilkan berbagai informasi di dalam sebuah browser Internet. Bermula dari sebuah bahasa yang sebelumnya banyak digunakan di dunia penerbitan dan percetakan yang disebut dengan SGML (Standard Generalized Markup Language), HTML adalah sebuah standar yang digunakan secara luas untuk menampilkan halaman web. HTML saat ini merupakan standar Internet yang didefinisikan dan dikendalikan penggunaannya oleh World Wide Web Consortium (W3C).</p><p>HTML berupa kode-kode tag yang menginstruksikan browser untuk menghasilkan tampilan sesuai dengan yang diinginkan. Sebuah file yang merupakan file HTML dapat dibuka dengan menggunakan browser web seperti Mozilla Firefox atau Microsoft Internet Explorer. HTML juga dapat dikenali oleh aplikasi pembuka email ataupun dari PDA dan program lain yang memiliki kemampuan browser.</p><p>HTML dokumen tersebut mirip dengan dokumen teks biasa, hanya dalam dokumen ini sebuah teks bisa memuat instruksi yang ditandai dengan kode atau lebih dikenal dengan TAG tertentu. Sebagai contoh jika ingin membuat teks ditampilkan menjadi tebal seperti: TAMPIL TEBAL, maka penulisannya dilakukan dengan cara: <b>TAMPIL TEBAL</b>. Tanda <b> digunakan untuk mengaktifkan instruksi cetak tebal, diikuti oleh teks yang ingin ditebalkan, dan diakhiri dengan tanda </b> untuk menonaktifkan cetak tebal tersebut.<br><br></p>', 200, NULL, NULL, '["teknologi","html","web"]', 1, '2016-04-07 16:46:34', '2016-04-07 17:02:29'),
+(3, 5, 'asd', '<p>sadasda</p>', 271, NULL, NULL, '["asd"]', NULL, '2016-04-11 21:35:10', '2016-04-11 21:51:07');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_article_category`
+-- Table structure for table `ibf_article_category`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_article_category` (
-`category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `category_name` varchar(50) NOT NULL,
   `count_article` int(4) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_article_category`
+-- Dumping data for table `ibf_article_category`
 --
 
 INSERT INTO `ibf_article_category` (`category_id`, `category_name`, `count_article`) VALUES
@@ -106,11 +133,11 @@ INSERT INTO `ibf_article_category` (`category_id`, `category_name`, `count_artic
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_article_comment`
+-- Table structure for table `ibf_article_comment`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_article_comment` (
-`comment_id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
   `comment_article_id` int(11) DEFAULT NULL,
   `comment_author` varchar(50) NOT NULL,
   `comment_author_email` varchar(50) DEFAULT NULL,
@@ -119,26 +146,41 @@ CREATE TABLE IF NOT EXISTS `ibf_article_comment` (
   `comment_content` text,
   `comment_approved` tinyint(1) DEFAULT '0',
   `comment_date_input` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_member`
+-- Table structure for table `ibf_asset`
+--
+
+CREATE TABLE IF NOT EXISTS `ibf_asset` (
+  `asset_id` int(11) NOT NULL,
+  `asset_name` varchar(50) DEFAULT NULL,
+  `asset_url` varchar(100) DEFAULT NULL,
+  `asset_url_thumb` varchar(100) DEFAULT NULL,
+  `asset_description` text,
+  `asset_create_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ibf_member`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_member` (
-`member_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
   `member_name` varchar(50) NOT NULL,
   `member_email` varchar(50) NOT NULL,
   `member_username` varchar(20) DEFAULT NULL,
   `member_password` varchar(32) DEFAULT NULL,
   `member_ibf_code` varchar(15) DEFAULT NULL,
   `member_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0=>suspend; 1=>active'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=271 ;
+) ENGINE=InnoDB AUTO_INCREMENT=272 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_member`
+-- Dumping data for table `ibf_member`
 --
 
 INSERT INTO `ibf_member` (`member_id`, `member_name`, `member_email`, `member_username`, `member_password`, `member_ibf_code`, `member_status`) VALUES
@@ -394,12 +436,13 @@ INSERT INTO `ibf_member` (`member_id`, `member_name`, `member_email`, `member_us
 (267, 'Herry Prasetyo', 'herry_prasetyo@rocketmail.com', 'tyook88', '03dde5692d101a5c750bb1e51169bb8a', 'IBF1600267', 1),
 (268, 'Arie Yudhotomo RH', 'arieyudho@gmail.com', 'arieyudho', '185cbb9fab667fce39dce61110a194e9', 'IBF1600268', 1),
 (269, 'Isyana Paramitha Iskandarputri', 'mitaa.mita@yahoo.com', 'isyanaaaa', '17a947fdd366095dbb37d3727cfa0011', 'IBF1600269', 1),
-(270, 'Nur Nisrina Ningrum', 'Nisrinna_nur@rocketmail,com', 'Nisrinous', '2d049c4cf7ee1ffe34ebbdb94c960e49', 'IBF1600270', 1);
+(270, 'Nur Nisrina Ningrum', 'Nisrinna_nur@rocketmail,com', 'Nisrinous', '2d049c4cf7ee1ffe34ebbdb94c960e49', 'IBF1600270', 1),
+(271, 'Puguh Jayadi', 'puguh.jayadi@gmail.com', 'puguhjayadi', '061b0e523489c2d27787ddacf1f91752', 'IBF1600271', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_member_detail`
+-- Table structure for table `ibf_member_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_member_detail` (
@@ -427,7 +470,7 @@ CREATE TABLE IF NOT EXISTS `ibf_member_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_member_detail`
+-- Dumping data for table `ibf_member_detail`
 --
 
 INSERT INTO `ibf_member_detail` (`member_id`, `member_type`, `member_birth_date`, `member_birthplace`, `member_gender`, `member_address`, `member_region`, `member_education`, `member_skills`, `member_job`, `member_phone`, `member_facebook`, `member_twitter`, `member_gplus`, `member_blog`, `member_image_profile`, `member_motivation`, `member_description`, `member_reg_year`, `member_date_input`, `member_date_update`) VALUES
@@ -685,22 +728,23 @@ INSERT INTO `ibf_member_detail` (`member_id`, `member_type`, `member_birth_date`
 (267, '["pelaksana Kegiatan"]', '2016-03-30', 'Indonesia', 1, 'Jl.P. Flores II RT 02 /010 Bekasi Timur Perumnas III', 1, 'SD Duren Jaya 14 Bekasi\nSLTP AL Muhadjirin\nPKBM AL Hidayah \nSTMIK Pranata Indonesia\n', 'Programming, Animasi, Computer', 'Guru', '085716829010', 'https://www.facebook.com/iloveguitarklasik', '@herry_ict', 'http://plus.google.com', 'reinkarnasijreng.web.id', '', 'Ingin Berbagi Ilmu Tidak Lebih Dan Tidak Kurang', 'SD Duren Jaya 14 Bekasi\nSLTP AL Muhadjirin\nPKBM AL Hidayah \nSTMIK Pranata Indonesia\n', 2016, '2016-03-30 17:14:54', '2016-03-30 17:14:54'),
 (268, '["pelaksana Kegiatan"]', '2016-03-30', 'Indonesia', 1, 'Jalan Sengon, Perum Griya Cipta Mulia 2H, Depok, Skeman, Yogyakarta', 1, 'S1 Teknik Elektro Institut Teknologi Sepuluh Nopember Surabaya', 'Bisnis, Internet, Otomotif', 'Swasta', '087826699168', '', '@arieyudho', 'http://plus.google.com', 'arieyudho.com', '', 'Sedekah Hidup', 'S1 Teknik Elektro Institut Teknologi Sepuluh Nopember Surabaya', 2016, '2016-03-30 17:14:54', '2016-03-30 17:14:54'),
 (269, '["pelaksana Kegiatan"]', '2016-03-30', 'Indonesia', 1, 'Apartemen Mediterania Palace Residences Tower C 29F/A', 1, 'Lulusan Teknik Komputer dari Universitas Indonesia angkatan 2011 :)', 'Hal-hal yang berhubungan dengan IT', 'Karyawan Swasta', '081234414547', 'http://www.facebook.com/isyanapar', '@isyanaaaa', 'http://plus.google.com', '', '', 'Ingin memberikan sesuatu kepada masyarakat :)', 'Lulusan Teknik Komputer dari Universitas Indonesia angkatan 2011 :)', 2016, '2016-03-30 17:14:54', '2016-03-30 17:14:54'),
-(270, '["pelaksana Kegiatan"]', '2016-03-30', 'Indonesia', 1, 'Jl. Kayumanis 1 No. 41 RT/RW : 1/14 Baktijaya, Sukmajaya, Depok Timur', 1, 'Bersekolah di: SMAN 2 Depok\nUmur: 17 tahun\nKelas: 2 SMA', 'Volunteer offline', 'Pelajar', '08970742553', 'https://m.facebook.com/nurnisrina.mew', '@nisrinous', 'http://plus.google.com', '', '', 'Pengen nyalurin ilmu yg gua punya, (mtk atau b ing) tapi ngga tau dimana. Mungkin melalui komunitas ini bisa. Walaupun belom tamat sma, tp gua ngerasa ilmu yg gua pelajarin selama ini sia sia kalo cuma gua pendem sendiri. Gua berharap bisa minimal berbuat sesuatu buat org lain melalui komunitas ini.', 'Bersekolah di: SMAN 2 Depok\nUmur: 17 tahun\nKelas: 2 SMA', 2016, '2016-03-30 17:14:54', '2016-03-30 17:14:54');
+(270, '["pelaksana Kegiatan"]', '2016-03-30', 'Indonesia', 1, 'Jl. Kayumanis 1 No. 41 RT/RW : 1/14 Baktijaya, Sukmajaya, Depok Timur', 1, 'Bersekolah di: SMAN 2 Depok\nUmur: 17 tahun\nKelas: 2 SMA', 'Volunteer offline', 'Pelajar', '08970742553', 'https://m.facebook.com/nurnisrina.mew', '@nisrinous', 'http://plus.google.com', '', '', 'Pengen nyalurin ilmu yg gua punya, (mtk atau b ing) tapi ngga tau dimana. Mungkin melalui komunitas ini bisa. Walaupun belom tamat sma, tp gua ngerasa ilmu yg gua pelajarin selama ini sia sia kalo cuma gua pendem sendiri. Gua berharap bisa minimal berbuat sesuatu buat org lain melalui komunitas ini.', 'Bersekolah di: SMAN 2 Depok\nUmur: 17 tahun\nKelas: 2 SMA', 2016, '2016-03-30 17:14:54', '2016-03-30 17:14:54'),
+(271, '["Web Developer"]', '1994-01-08', 'Magetan', 1, 'Gendeng, Kidul Rel UIN Yogyakarta', 4, 'Teknik Informatika', 'Web Developer', 'Mahasiswa', '085749121080', 'https://www.facebook.com/pugcrut', 'https://www.twitter.com/puguhjayadi81', NULL, 'https://www.puguhjayadi.blogspot.co.id', NULL, 'Belajar dan berbagi ilmu', 'Anak petani yang gokil', 2016, '2016-04-10 15:42:38', '2016-04-10 15:42:38');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_member_type`
+-- Table structure for table `ibf_member_type`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_member_type` (
-`type_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
   `member_type` varchar(100) NOT NULL,
   `type_description` text
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_member_type`
+-- Dumping data for table `ibf_member_type`
 --
 
 INSERT INTO `ibf_member_type` (`type_id`, `member_type`, `type_description`) VALUES
@@ -723,7 +767,7 @@ INSERT INTO `ibf_member_type` (`type_id`, `member_type`, `type_description`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_privilage`
+-- Table structure for table `ibf_privilage`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_privilage` (
@@ -751,7 +795,7 @@ CREATE TABLE IF NOT EXISTS `ibf_privilage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_privilage`
+-- Dumping data for table `ibf_privilage`
 --
 
 INSERT INTO `ibf_privilage` (`member_id`, `app_1`, `app_2`, `app_3`, `app_4`, `app_5`, `app_6`, `app_7`, `app_8`, `app_9`, `app_10`, `app_11`, `app_12`, `app_13`, `app_14`, `app_15`, `app_16`, `app_17`, `app_18`, `app_19`, `app_20`) VALUES
@@ -1007,22 +1051,23 @@ INSERT INTO `ibf_privilage` (`member_id`, `app_1`, `app_2`, `app_3`, `app_4`, `a
 (267, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 (268, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 (269, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-(270, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+(270, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+(271, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ibf_region`
+-- Table structure for table `ibf_region`
 --
 
 CREATE TABLE IF NOT EXISTS `ibf_region` (
-`region_id` int(11) NOT NULL,
+  `region_id` int(11) NOT NULL,
   `region_name` varchar(50) NOT NULL,
   `count_member` int(4) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ibf_region`
+-- Dumping data for table `ibf_region`
 --
 
 INSERT INTO `ibf_region` (`region_id`, `region_name`, `count_member`) VALUES
@@ -1046,122 +1091,148 @@ INSERT INTO `ibf_region` (`region_id`, `region_name`, `count_member`) VALUES
 --
 
 --
+-- Indexes for table `ibf_activity`
+--
+ALTER TABLE `ibf_activity`
+  ADD PRIMARY KEY (`activity_id`);
+
+--
 -- Indexes for table `ibf_app`
 --
 ALTER TABLE `ibf_app`
- ADD PRIMARY KEY (`app_id`);
+  ADD PRIMARY KEY (`app_id`);
 
 --
 -- Indexes for table `ibf_article`
 --
 ALTER TABLE `ibf_article`
- ADD PRIMARY KEY (`article_id`), ADD KEY `article_author` (`article_author`), ADD KEY `article_category` (`article_category`);
+  ADD PRIMARY KEY (`article_id`),
+  ADD KEY `article_author` (`article_author`),
+  ADD KEY `article_category` (`article_category`);
 
 --
 -- Indexes for table `ibf_article_category`
 --
 ALTER TABLE `ibf_article_category`
- ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `ibf_article_comment`
 --
 ALTER TABLE `ibf_article_comment`
- ADD PRIMARY KEY (`comment_id`), ADD KEY `comment_article_id` (`comment_article_id`);
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `comment_article_id` (`comment_article_id`);
+
+--
+-- Indexes for table `ibf_asset`
+--
+ALTER TABLE `ibf_asset`
+  ADD PRIMARY KEY (`asset_id`);
 
 --
 -- Indexes for table `ibf_member`
 --
 ALTER TABLE `ibf_member`
- ADD PRIMARY KEY (`member_id`);
+  ADD PRIMARY KEY (`member_id`);
 
 --
 -- Indexes for table `ibf_member_detail`
 --
 ALTER TABLE `ibf_member_detail`
- ADD KEY `member_id` (`member_id`), ADD KEY `member_region` (`member_region`);
+  ADD KEY `member_id` (`member_id`),
+  ADD KEY `member_region` (`member_region`);
 
 --
 -- Indexes for table `ibf_member_type`
 --
 ALTER TABLE `ibf_member_type`
- ADD PRIMARY KEY (`type_id`);
+  ADD PRIMARY KEY (`type_id`);
 
 --
 -- Indexes for table `ibf_privilage`
 --
 ALTER TABLE `ibf_privilage`
- ADD KEY `member_id` (`member_id`);
+  ADD KEY `member_id` (`member_id`);
 
 --
 -- Indexes for table `ibf_region`
 --
 ALTER TABLE `ibf_region`
- ADD PRIMARY KEY (`region_id`);
+  ADD PRIMARY KEY (`region_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `ibf_activity`
+--
+ALTER TABLE `ibf_activity`
+  MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `ibf_article`
 --
 ALTER TABLE `ibf_article`
-MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `ibf_article_category`
 --
 ALTER TABLE `ibf_article_category`
-MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `ibf_article_comment`
 --
 ALTER TABLE `ibf_article_comment`
-MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `ibf_asset`
+--
+ALTER TABLE `ibf_asset`
+  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ibf_member`
 --
 ALTER TABLE `ibf_member`
-MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=271;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=272;
 --
 -- AUTO_INCREMENT for table `ibf_member_type`
 --
 ALTER TABLE `ibf_member_type`
-MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `ibf_region`
 --
 ALTER TABLE `ibf_region`
-MODIFY `region_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `region_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `ibf_article`
+-- Constraints for table `ibf_article`
 --
 ALTER TABLE `ibf_article`
-ADD CONSTRAINT `ibf_article_ibfk_1` FOREIGN KEY (`article_author`) REFERENCES `ibf_member` (`member_id`),
-ADD CONSTRAINT `ibf_article_ibfk_2` FOREIGN KEY (`article_category`) REFERENCES `ibf_article_category` (`category_id`);
+  ADD CONSTRAINT `ibf_article_ibfk_1` FOREIGN KEY (`article_author`) REFERENCES `ibf_member` (`member_id`),
+  ADD CONSTRAINT `ibf_article_ibfk_2` FOREIGN KEY (`article_category`) REFERENCES `ibf_article_category` (`category_id`);
 
 --
--- Ketidakleluasaan untuk tabel `ibf_article_comment`
+-- Constraints for table `ibf_article_comment`
 --
 ALTER TABLE `ibf_article_comment`
-ADD CONSTRAINT `ibf_article_comment_ibfk_1` FOREIGN KEY (`comment_article_id`) REFERENCES `ibf_article` (`article_id`);
+  ADD CONSTRAINT `ibf_article_comment_ibfk_1` FOREIGN KEY (`comment_article_id`) REFERENCES `ibf_article` (`article_id`);
 
 --
--- Ketidakleluasaan untuk tabel `ibf_member_detail`
+-- Constraints for table `ibf_member_detail`
 --
 ALTER TABLE `ibf_member_detail`
-ADD CONSTRAINT `ibf_member_detail_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `ibf_member` (`member_id`) ON DELETE CASCADE,
-ADD CONSTRAINT `ibf_member_detail_ibfk_2` FOREIGN KEY (`member_region`) REFERENCES `ibf_region` (`region_id`);
+  ADD CONSTRAINT `ibf_member_detail_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `ibf_member` (`member_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ibf_member_detail_ibfk_2` FOREIGN KEY (`member_region`) REFERENCES `ibf_region` (`region_id`);
 
 --
--- Ketidakleluasaan untuk tabel `ibf_privilage`
+-- Constraints for table `ibf_privilage`
 --
 ALTER TABLE `ibf_privilage`
-ADD CONSTRAINT `ibf_privilage_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `ibf_member` (`member_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ibf_privilage_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `ibf_member` (`member_id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
