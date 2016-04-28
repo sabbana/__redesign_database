@@ -140,12 +140,14 @@ create table ibf_article(
 	article_id int primary key auto_increment,
 	article_category int,
 	article_title varchar(100) not null,
+	article_headline varchar(500),
 	article_content text,
 	article_author int,
 	article_reviewer int,
 	article_image varchar(100),
 	article_tags varchar(200),
 	article_approve boolean default 0,
+	article_comment_count int,
 	article_date_input datetime,
 	article_date_update datetime,
 	foreign key (article_author) references ibf_member(member_id),
@@ -200,4 +202,31 @@ create table ibf_activity_participant(
 	job varchar(50),
 	date_register datetime,
 	foreign key (activity_id) references ibf_activity(activity_id) ON DELETE CASCADE
+);
+
+
+-- Donation 
+create table ibf_donation(
+	donation_id int primary key auto_increment,
+	member_id int,
+	name varchar(100) not null,
+	email varchar(50),
+	description varchar(255),
+	amount int,
+	currency varchar(10)
+);
+
+create table ibf_donator(
+	donator_id int primary auto_increment,
+	donator_name varchar(50) not null,
+	member_id int
+);
+
+-- Partners
+create table ibf_partner(
+	partner_id int primary key auto_increment,
+	partner_name varchar(100) not null,
+	company varchar(100),
+	phone varchar(30),
+	email varchar(50)
 );
