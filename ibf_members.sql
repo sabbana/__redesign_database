@@ -217,7 +217,7 @@ create table ibf_donation(
 );
 
 create table ibf_donator(
-	donator_id int primary auto_increment,
+	donator_id int primary key auto_increment,
 	donator_name varchar(50) not null,
 	member_id int
 );
@@ -227,6 +227,7 @@ create table ibf_partner(
 	partner_id int primary key auto_increment,
 	partner_name varchar(100) not null,
 	company varchar(100),
+	company_logo varchar(200),
 	phone varchar(30),
 	email varchar(50)
 );
